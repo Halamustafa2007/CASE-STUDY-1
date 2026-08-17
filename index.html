@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rock Paper Scissors — AI Hand Gesture Game</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="title">
+    <h1>Rock Paper Scissors <span>vs AI</span></h1>
+  </header>
+
+  <div id="permissionGate" class="permission-gate">
+    <div class="permission-box">
+      <div class="permission-icon">📷</div>
+      <h2>Camera Access Needed</h2>
+      <p>This game needs your webcam to see your hand and detect Rock, Paper, or Scissors. Nothing is recorded or sent anywhere — video stays in your browser.</p>
+      <button id="enableCameraBtn">Enable Camera ▶</button>
+      <p id="permissionError" class="permission-error hidden"></p>
+    </div>
+  </div>
+
+  <main class="game-wrap hidden" id="gameWrap">
+
+    <!-- Top score row -->
+    <div class="score-row">
+      <div class="score-circle you">
+        <span id="playerScore">0</span>
+        <label>You</label>
+      </div>
+      <div class="score-circle draw">
+        <span id="drawScore">0</span>
+        <label>Draw</label>
+      </div>
+      <div class="score-circle ai">
+        <span id="aiScore">0</span>
+        <label>AI</label>
+      </div>
+    </div>
+
+    <!-- Main arena -->
+    <div class="arena">
+
+      <!-- LEFT: Camera -->
+      <section class="panel camera-panel">
+        <h2>You</h2>
+        <div class="video-box">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="overlay"></canvas>
+          <div id="countdown" class="countdown hidden">3</div>
+        </div>
+        <div class="move-readout">
+          <span class="move-emoji" id="playerEmoji">✋</span>
+          <span class="move-text" id="playerMove">—</span>
+        </div>
+      </section>
+
+     
+      <div class="vs-col">
+        <div class="vs">VS</div>
+
+        <div class="controls">
+          <label for="difficulty">AI Difficulty</label>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <button id="startBtn">Play Round ▶</button>
+        </div>
+
+        <div id="resultBanner" class="result-banner hidden"></div>
+      </div>
+
+    
+      <section class="panel ai-panel">
+        <h2>AI</h2>
+        <div class="ai-avatar" id="aiAvatar">🤖</div>
+        <div class="move-readout">
+          <span class="move-emoji" id="aiEmoji">✊</span>
+          <span class="move-text" id="aiMove">—</span>
+        </div>
+        <p class="thinking hidden" id="thinking">thinking<span>.</span><span>.</span><span>.</span></p>
+      </section>
+
+    </div>
+
+    <p class="round-note">Round <span id="round">0</span></p>
+
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
